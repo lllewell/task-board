@@ -19,21 +19,31 @@ function generateTaskId() {
 // TODO: create a function to create a task card
 function createTaskCard(task) {
   // create card elements
+  const cardEl = $('<div>');
   const pastDueCardEl = $('<div>');
   const nearDueCardEl = $('<div>');
 
 
   // set card background color based on due date
+  pastDueCardEl.css('background-color', 'red');
+  nearDueCardEl.css('background-color', 'yellow');
   
 
   // append card elements
+const todoEl = $('#todo-cards')
+
+  todoEl.append(cardEl);
+  todoEl.append(pastDueCardEl);
+  todoEl.append(nearDueCardEl);
 }
 
 // TODO: create a function to render the task list and make cards draggable
 function renderTaskList() {
   // if taskList is null, set it to an empty array
+  taskList = JSON.parse(localStorage.getItem("tasks")) || [];
 
   // empty existing task cards
+
 
   // loop through tasks and create task cards for each status
 
