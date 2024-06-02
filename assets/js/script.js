@@ -43,18 +43,29 @@ function renderTaskList() {
   taskList = JSON.parse(localStorage.getItem("tasks")) || [];
 
   // empty existing task cards
+  // use .remove()?
 
 
   // loop through tasks and create task cards for each status
 
   // make task cards draggable
+  
+  $( function() {
+    $( "#todo-cards" ).draggable();
+  });
 }
+
 
 // TODO: create a function to handle adding a new task
 function handleAddTask(event) {
   // create a new task object
+  const newTask = {
+
+  };
 
   // add the new task to the taskList save and render
+  taskList.push(newTask);
+  localStorage.setItem('taskList', JSON.stringify(taskList));
 }
 
 // TODO: create a function to handle deleting a task
@@ -76,10 +87,21 @@ function handleDrop(event, ui) {
 // TODO: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
   // render the task list
+  JSON.parse(localStorage.getItem(taskList));
 
   // add event listener
+  const addTaskBtn = $('.btn');
+
+  addTaskBtn.on('click', function () {
+
+  });
 
   // make lanes droppable
 
+
   // make due date field a date picker
+  // Where is the due date field?
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
 });
