@@ -69,7 +69,9 @@ function renderTaskList() {
 function handleAddTask(event) {
   // create a new task object
   const newTask = {
-
+    taskTitle: '',
+    taskDueDate: '',
+    taskDescription: '',
   };
 
   // add the new task to the taskList save and render
