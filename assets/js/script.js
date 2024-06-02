@@ -43,7 +43,14 @@ function renderTaskList() {
   taskList = JSON.parse(localStorage.getItem("tasks")) || [];
 
   // empty existing task cards
-  // use .remove()?
+ const toDoList = $('#todo-cards');
+ toDoList.empty();
+
+ const inProgressList = $('in-progress-cards');
+ inProgressList.empty();
+
+ const doneList = $('done-cards');
+ doneList.empty();
 
 
   // loop through tasks and create task cards for each status
@@ -52,6 +59,8 @@ function renderTaskList() {
   
   $( function() {
     $( "#todo-cards" ).draggable();
+    $('#in-progress-cards').draggable();
+    $('done-cards').draggable();
   });
 }
 
