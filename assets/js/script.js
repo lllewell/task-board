@@ -113,6 +113,6 @@ $(document).ready(function () {
   // make due date field a date picker
   // Where is the due date field?
   $( function() {
-    $( "#datepicker" ).datepicker();
+    $( "#task-due-date" ).datepicker();
   } );
 });
