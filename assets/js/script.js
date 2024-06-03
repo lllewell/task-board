@@ -69,6 +69,9 @@ function renderTaskList() {
 
 
   // loop through tasks and create task cards for each status
+  for (task of taskList) {
+    
+  }
 
   // make task cards draggable
 
@@ -84,9 +87,9 @@ function renderTaskList() {
 function handleAddTask(event) {
   // create a new task object
   const newTask = {
-    taskTitle: taskTitle.input.value.trim(),
-    taskDueDate: taskDueDate.input.value,
-    taskDescription: taskDescription.input.value.trim(),
+    title: taskTitle.input.value.trim(),
+    dueDate: taskDueDate.input.value,
+    description: taskDescription.input.value.trim(),
   };
 
   // add the new task to the taskList save and render
