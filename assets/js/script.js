@@ -1,15 +1,15 @@
 // Retrieve tasks and nextId from localStorage
-let taskList = JSON.parse(localStorage.getItem("tasks"));
-let nextId = JSON.parse(localStorage.getItem("nextId"));
-const taskTitle = $("#task-title");
-const taskDueDate = $('task-due-date');
-const taskDescription = $('task-description');
+let taskList = JSON.parse(localStorage.getItem('tasks'));
+let nextId = JSON.parse(localStorage.getItem('nextId'));
+const taskTitle = $('#task-title');
+const taskDueDate = $('#task-due-date');
+const taskDescription = $('#task-description');
 
 // TODO: create a function to generate a unique task id
 function generateTaskId() {
   // if nextId does not exist in localStorage, set it to 1
-  if (nextId = '') {
-    localStorage.setItem = 1
+  if (nextId === null) {
+    nextId = 1
   } else {
     // otherwise, increment it by 1
     nextId++
@@ -61,10 +61,10 @@ function renderTaskList() {
   const toDoList = $('#todo-cards');
   toDoList.empty();
 
-  const inProgressList = $('in-progress-cards');
+  const inProgressList = $('#in-progress-cards');
   inProgressList.empty();
 
-  const doneList = $('done-cards');
+  const doneList = $('#done-cards');
   doneList.empty();
 
 
@@ -75,7 +75,7 @@ function renderTaskList() {
   $(function () {
     $("#todo-cards").draggable();
     $('#in-progress-cards').draggable();
-    $('done-cards').draggable();
+    $('#done-cards').draggable();
   });
 }
 
@@ -116,24 +116,22 @@ $(document).ready(function () {
   JSON.parse(localStorage.getItem(taskList));
 
   // add event listener
-  const addTaskBtn = $('.btn');
+  const addTaskBtn = $('#add-task');
 
   addTaskBtn.on('click', function () {
-
-  });
-};
-
-// make lanes droppable
-$(".swim-lanes").droppable({
-  drop: function (event, ui) {
-    $(this)
-      .addClass("ui-state-highlight")
-
-
-    // make due date field a date picker
-    $(function () {
-      $("#task-due-date").datepicker();
-    });
-  }
+  // make lanes droppable
+  $('.swim-lanes').droppable({
+    drop: function (event, ui) {
+      $(this)
+        .addClass("ui-state-highlight");
+  
+  
+      // make due date field a date picker
+  $(function () {
+        $('#task-due-date').datepicker();
+      });
+    }
+  } );
 });
-);
+});
+
