@@ -40,8 +40,12 @@ function createTaskCard(task) {
   let today = dayjs();
   taskDueDate = day.js('task-due-date', 'DD/MM/YYYY');
 
-  pastDueCardEl.css('background-color', 'red');
-  nearDueCardEl.css('background-color', 'yellow');
+  if (today > taskDueDate) {
+    pastDueCardEl.css('background-color', 'red');
+  } else if (today < taskDueDate) {
+    nearDueCardEl.css('background-color', 'yellow');
+  };
+
 
 
   // append card elements
@@ -70,7 +74,7 @@ function renderTaskList() {
 
   // loop through tasks and create task cards for each status
   for (task of taskList) {
-    
+
   }
 
   // make task cards draggable
@@ -131,7 +135,10 @@ $(document).ready(function () {
   
       // make due date field a date picker
   $(function () {
-        $('#task-due-date').datepicker();
+        $('#task-due-date').datepicker({
+          changeMonth: true,
+          changeYear: true,
+        });
       });
     }
   } );
