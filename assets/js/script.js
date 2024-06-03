@@ -76,7 +76,12 @@ function renderTaskList() {
 
   // loop through tasks and create task cards for each status
   for (task of taskList) {
-
+    if (newTask.status === 'todo') {
+      $('#todo-cards').append(cardEl);
+  } else if (newTask.status === 'inProgress') {
+      $('#in-progress-cards').append(cardEl);
+  } else if (newTask.status === 'done') {
+      $('#done-cards').append(cardEl);
   }
 
   // make task cards draggable
@@ -87,6 +92,7 @@ function renderTaskList() {
     $('#done-cards').draggable();
   });
 }
+};
 
 
 // TODO: create a function to handle adding a new task
@@ -96,6 +102,7 @@ function handleAddTask(event) {
     title: taskTitle.input.value.trim(),
     dueDate: taskDueDate.input.value,
     description: taskDescription.input.value.trim(),
+    staus: 'todo'
   };
 
   // add the new task to the taskList save and render
