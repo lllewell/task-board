@@ -1,6 +1,9 @@
 // Retrieve tasks and nextId from localStorage
 let taskList = JSON.parse(localStorage.getItem("tasks"));
 let nextId = JSON.parse(localStorage.getItem("nextId"));
+const taskTitle = $("#task-title");
+const taskDueDate = $('task-due-date');
+const taskDescription = $('task-description');
 
 // TODO: create a function to generate a unique task id
 function generateTaskId() {
@@ -25,7 +28,8 @@ function createTaskCard(task) {
 
 
   // set card background color based on due date
-let today = dayjs();
+  let today = dayjs();
+  taskDueDate = day.js('task-due-date', 'DD/MM/YYYY');
 
   pastDueCardEl.css('background-color', 'red');
   nearDueCardEl.css('background-color', 'yellow');
@@ -70,14 +74,9 @@ function renderTaskList() {
 // TODO: create a function to handle adding a new task
 function handleAddTask(event) {
   // create a new task object
-  let taskTitle = $("#task-title");
-  let taskDueDate = $('task-due-date');
-  let taskDescription = $('task-description');
-
-
   const newTask = {
     taskTitle: taskTitle.input.value.trim(),
-    taskDueDate: taskDueDate.input.value.trim(),
+    taskDueDate: taskDueDate.input.value,
     taskDescription: taskDescription.input.value.trim(),
   };
 
@@ -115,17 +114,17 @@ $(document).ready(function () {
   });
 };
 
-  // make lanes droppable
-  $(".swim").droppable({
-    drop: function (event, ui) {
-      $(this)
-        .addClass("ui-state-highlight")
+// make lanes droppable
+$(".swim-lanes").droppable({
+  drop: function (event, ui) {
+    $(this)
+      .addClass("ui-state-highlight")
 
 
-      // make due date field a date picker
-      $(function () {
-        $("#task-due-date").datepicker();
-      });
-    }
-  });
+    // make due date field a date picker
+    $(function () {
+      $("#task-due-date").datepicker();
+    });
+  }
+});
 );
