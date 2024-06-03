@@ -31,7 +31,9 @@ function createTaskCard(task) {
 
   cardHeader.addClass('header h4');
   cardBody.addClass('body');
+  cardText.addClass('text');
   
+
 
 
   // set card background color based on due date
