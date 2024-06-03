@@ -25,6 +25,13 @@ function createTaskCard(task) {
   const cardEl = $('<div>');
   const pastDueCardEl = $('<div>');
   const nearDueCardEl = $('<div>');
+  const cardHeader = $('<div>');
+  const cardBody = $('<div>');
+  const cardText = $('<p>');
+
+  cardHeader.addClass('header h4');
+  cardBody.addClass('body');
+  
 
 
   // set card background color based on due date
