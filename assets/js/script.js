@@ -22,7 +22,7 @@ function generateTaskId() {
 // TODO: create a function to create a task card
 function createTaskCard(task) {
   // create card elements
-  const cardEl = $('<div>');
+  const  = $('<div>');
   const pastDueCardEl = $('<div>');
   const nearDueCardEl = $('<div>');
   const cardHeader = $('<div>');
@@ -34,17 +34,17 @@ function createTaskCard(task) {
   cardHeader.addClass('header h4');
   cardBody.addClass('body');
   cardText.addClass('text');
-  
+
 
 
 
   // set card background color based on due date
   let today = dayjs();
-  taskDueDate = day.js('task-due-date', 'DD/MM/YYYY');
-
-  if (today > taskDueDate) {
+  const taskDate = dayjs(task.dueDate, 'MM/DD/YYYY');
+  
+  if (today > taskDate) {
     pastDueCardEl.css('background-color', 'red');
-  } else if (today < taskDueDate) {
+  } else if (today < taskDate) {
     nearDueCardEl.css('background-color', 'yellow');
   };
 
@@ -53,7 +53,7 @@ function createTaskCard(task) {
   // append card elements
   const todoEl = $('#todo-cards')
 
-  todoEl.append(cardEl);
+  todoEl.append();
   todoEl.append(pastDueCardEl);
   todoEl.append(nearDueCardEl);
 }
@@ -75,39 +75,46 @@ function renderTaskList() {
 
 
   // loop through tasks and create task cards for each status
-  for (task of taskList) {
-    if (newTask.status === 'todo') {
-      $('#todo-cards').append(cardEl);
-  } else if (newTask.status === 'inProgress') {
-      $('#in-progress-cards').append(cardEl);
-  } else if (newTask.status === 'done') {
-      $('#done-cards').append(cardEl);
+  for (let task of taskList) {
+    if (task.status === 'todo') {
+      $('#todo-cards').append();
+    } else if (task.status === 'inProgress') {
+      $('#in-progress-cards').append();
+    } else if (task.status === 'done') {
+      $('#done-cards').append();
+    }
+
+    createTaskCard(task);
+
+    // make task cards draggable
+
+    $(function () {
+      $("#todo-cards").draggable();
+      $('#in-progress-cards').draggable();
+      $('#done-cards').draggable();
+    });
   }
-
-  // make task cards draggable
-
-  $(function () {
-    $("#todo-cards").draggable();
-    $('#in-progress-cards').draggable();
-    $('#done-cards').draggable();
-  });
-}
 };
 
 
 // TODO: create a function to handle adding a new task
 function handleAddTask(event) {
+  event.preventDefault();
+
+  taskList = JSON.parse(localStorage.getItem("tasks")) || [];
   // create a new task object
   const newTask = {
-    title: taskTitle.input.value.trim(),
-    dueDate: taskDueDate.input.value,
-    description: taskDescription.input.value.trim(),
-    staus: 'todo'
+    title: taskTitle.val().trim(),
+    dueDate: taskDueDate.val().trim(),
+    description: taskDescription.val().trim(),
+    status: 'todo'
   };
 
   // add the new task to the taskList save and render
   taskList.push(newTask);
-  localStorage.setItem('taskList', JSON.stringify(taskList));
+  localStorage.setItem('tasks', JSON.stringify(taskList));
+
+  renderTaskList();
 }
 
 // TODO: create a function to handle deleting a task
@@ -129,28 +136,30 @@ function handleDrop(event, ui) {
 // TODO: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
   // render the task list
-  JSON.parse(localStorage.getItem(taskList));
+  renderTaskList();
 
   // add event listener
   const addTaskBtn = $('#add-task');
 
-  addTaskBtn.on('click', function () {
+  addTaskBtn.on('click', handleAddTask);
+  
   // make lanes droppable
   $('.lane').droppable({
     drop: function (event, ui) {
       $(this)
         .addClass("ui-state-highlight");
-  
-  
-      // make due date field a date picker
-  $(function () {
-        $('#task-due-date').datepicker({
-          changeMonth: true,
-          changeYear: true,
-        });
-      });
+
+
     }
-  } );
+  });
+
+  // make due date field a date picker
+  $(function () {
+    $('#task-due-date').datepicker({
+      changeMonth: true,
+      changeYear: true,
+    });
+  });
 });
-});
+
 
