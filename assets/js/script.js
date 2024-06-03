@@ -25,9 +25,9 @@ function createTaskCard(task) {
   const cardEl= $('<div>');
   const pastDueCardEl = $('<div>');
   const nearDueCardEl = $('<div>');
-  const cardHeader = $('<div>');
-  const cardBody = $('<div>');
-  const cardText = $('<p>');
+  const titleEl = $('<h3>').text('#task-title');
+  const dueDateEl = $('<div>').text('#task-due-date');
+  const descriptionEl = $('<p>').text('#task-description');
 
   // I want the cardHeader to be the taskTitle, the dueDate to be in the cardBody and the description to be in the <p>
 
@@ -54,8 +54,7 @@ function createTaskCard(task) {
   const todoEl = $('#todo-cards')
 
   todoEl.append(cardEl);
-  todoEl.append(pastDueCardEl);
-  todoEl.append(nearDueCardEl);
+  todoEl.append(titleEl, dueDateEl, descriptionEl);
 }
 
 // TODO: create a function to render the task list and make cards draggable
@@ -76,16 +75,10 @@ function renderTaskList() {
 
   // loop through tasks and create task cards for each status
   for (let task of taskList) {
-    if (task.status === 'todo') {
-      $('#todo-cards').append(toDoList);
-      // Figure out what you need to append the cards to
-    } else if (task.status === 'inProgress') {
-      $('#in-progress-cards').append('#in-progress-cards');
-    } else if (task.status === 'done') {
-      $('#done-cards').append('#done-cards');
+    if (newTask.status === 'todo') {
+      createTaskCard(task);
     }
 
-    createTaskCard(task);
 
     // make task cards draggable
 
@@ -103,12 +96,15 @@ function handleAddTask(event) {
   event.preventDefault();
 
   taskList = JSON.parse(localStorage.getItem("tasks")) || [];
+
+  generateTaskId()
   // create a new task object
   const newTask = {
     title: taskTitle.val().trim(),
     dueDate: taskDueDate.val().trim(),
     description: taskDescription.val().trim(),
-    status: 'todo'
+    status: 'todo',
+    id: nextId,
   };
 
   // add the new task to the taskList save and render
@@ -147,10 +143,7 @@ $(document).ready(function () {
   // make lanes droppable
   $('.lane').droppable({
     drop: function (event, ui) {
-      $(this)
-        .addClass("ui-state-highlight");
-
-
+      $(this).addClass("ui-state-highlight");
     }
   });
 
