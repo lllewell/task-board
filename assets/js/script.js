@@ -25,12 +25,14 @@ function createTaskCard(task) {
 
 
   // set card background color based on due date
+let today = dayjs();
+
   pastDueCardEl.css('background-color', 'red');
   nearDueCardEl.css('background-color', 'yellow');
-  
+
 
   // append card elements
-const todoEl = $('#todo-cards')
+  const todoEl = $('#todo-cards')
 
   todoEl.append(cardEl);
   todoEl.append(pastDueCardEl);
@@ -43,22 +45,22 @@ function renderTaskList() {
   taskList = JSON.parse(localStorage.getItem("tasks")) || [];
 
   // empty existing task cards
- const toDoList = $('#todo-cards');
- toDoList.empty();
+  const toDoList = $('#todo-cards');
+  toDoList.empty();
 
- const inProgressList = $('in-progress-cards');
- inProgressList.empty();
+  const inProgressList = $('in-progress-cards');
+  inProgressList.empty();
 
- const doneList = $('done-cards');
- doneList.empty();
+  const doneList = $('done-cards');
+  doneList.empty();
 
 
   // loop through tasks and create task cards for each status
 
   // make task cards draggable
-  
-  $( function() {
-    $( "#todo-cards" ).draggable();
+
+  $(function () {
+    $("#todo-cards").draggable();
     $('#in-progress-cards').draggable();
     $('done-cards').draggable();
   });
@@ -68,10 +70,15 @@ function renderTaskList() {
 // TODO: create a function to handle adding a new task
 function handleAddTask(event) {
   // create a new task object
+  let taskTitle = $("#task-title");
+  let taskDueDate = $('task-due-date');
+  let taskDescription = $('task-description');
+
+
   const newTask = {
-    taskTitle: '',
-    taskDueDate: '',
-    taskDescription: '',
+    taskTitle: taskTitle.input.value.trim(),
+    taskDueDate: taskDueDate.input.value.trim(),
+    taskDescription: taskDescription.input.value.trim(),
   };
 
   // add the new task to the taskList save and render
@@ -106,13 +113,19 @@ $(document).ready(function () {
   addTaskBtn.on('click', function () {
 
   });
+};
 
   // make lanes droppable
+  $(".swim").droppable({
+    drop: function (event, ui) {
+      $(this)
+        .addClass("ui-state-highlight")
 
 
-  // make due date field a date picker
-  // Where is the due date field?
-  $( function() {
-    $( "#task-due-date" ).datepicker();
-  } );
-});
+      // make due date field a date picker
+      $(function () {
+        $("#task-due-date").datepicker();
+      });
+    }
+  });
+);
