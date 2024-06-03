@@ -39,7 +39,7 @@ function createTaskCard(task) {
 
 
   // set card background color based on due date
-  let today = dayjs();
+  let today = dayjs().format('MM/DD/YYYY');
   const taskDate = dayjs(task.dueDate, 'MM/DD/YYYY');
   
   if (today > taskDate) {
