@@ -22,7 +22,7 @@ function generateTaskId() {
 // TODO: create a function to create a task card
 function createTaskCard(task) {
   // create card elements
-  const  = $('<div>');
+  const cardEl= $('<div>');
   const pastDueCardEl = $('<div>');
   const nearDueCardEl = $('<div>');
   const cardHeader = $('<div>');
@@ -53,7 +53,7 @@ function createTaskCard(task) {
   // append card elements
   const todoEl = $('#todo-cards')
 
-  todoEl.append();
+  todoEl.append(cardEl);
   todoEl.append(pastDueCardEl);
   todoEl.append(nearDueCardEl);
 }
@@ -78,6 +78,7 @@ function renderTaskList() {
   for (let task of taskList) {
     if (task.status === 'todo') {
       $('#todo-cards').append();
+      // Figure out what you need to append the cards to
     } else if (task.status === 'inProgress') {
       $('#in-progress-cards').append();
     } else if (task.status === 'done') {
