@@ -29,6 +29,8 @@ function createTaskCard(task) {
   const cardBody = $('<div>');
   const cardText = $('<p>');
 
+  // I want the cardHeader to be the taskTitle, the dueDate to be in the cardBody and the description to be in the <p>
+
   cardHeader.addClass('header h4');
   cardBody.addClass('body');
   cardText.addClass('text');
@@ -127,7 +129,7 @@ $(document).ready(function () {
 
   addTaskBtn.on('click', function () {
   // make lanes droppable
-  $('.swim-lanes').droppable({
+  $('.lane').droppable({
     drop: function (event, ui) {
       $(this)
         .addClass("ui-state-highlight");
