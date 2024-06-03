@@ -77,7 +77,7 @@ function renderTaskList() {
   // loop through tasks and create task cards for each status
   for (let task of taskList) {
     if (task.status === 'todo') {
-      $('#todo-cards').append('#todo-cards');
+      $('#todo-cards').append(toDoList);
       // Figure out what you need to append the cards to
     } else if (task.status === 'inProgress') {
       $('#in-progress-cards').append('#in-progress-cards');
