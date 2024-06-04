@@ -118,6 +118,7 @@ function handleDrop(event, ui) {
 
   // update the task status of the dragged card
   
+  
   // save and render
 }
 
@@ -134,10 +135,9 @@ $(document).ready(function () {
   // make lanes droppable
   $('.lane').droppable({
     drop: function (event, ui) {
-      let card = $(ui.draggable);
       $(this).addClass("ui-state-highlight");
-      accept = '.task-card';
-      tolerance = 'fit';
+      $('task-card').append($('.lane')).text(ui-draggable-dragging)
+      
       
     
     }
