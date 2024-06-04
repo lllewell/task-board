@@ -22,20 +22,20 @@ function generateTaskId() {
 // TODO: create a function to create a task card
 function createTaskCard(task) {
   // create card elements
-  const cardEl= $('<div class="task card mb-4 p-3">');
+  const cardEl= $('<div class="task-card mb-4 p-3 border">');
   const titleEl = $('<h3>').text(task.title);
-  const dueDateEl = $('<footer>').text(task.dueDate);
+  const dueDateEl = $('<div>').text(task.dueDate);
   const descriptionEl = $('<div>').text(task.description);
 
 
   // set card background color based on due date
   let today = dayjs(dayjs().format('MM/DD/YYYY'),'MM/DD/YYYY');
-  const taskDate = dayjs(dueDateEl, 'MM/DD/YYYY');
+  const taskDate = dayjs(task.dueDate, 'MM/DD/YYYY');
   
-  if (today.isAfter(taskDate)) {
-    cardEl.addClass('bs-danger');
-  } else if (today.isBefore(taskDate)) {
-    cardEl.addClass('bs-warning');
+  if (today > taskDate) {
+    cardEl.addClass('bg-danger');
+  } else if (today.isSame(taskDate)) {
+    cardEl.addClass('bg-warning');
   };
 
 
@@ -73,9 +73,10 @@ function renderTaskList() {
     // make task cards draggable
 
     $(function () {
-      $("#todo-cards").draggable();
-      $('#in-progress-cards').draggable();
-      $('#done-cards').draggable();
+      $(".task-card").draggable({
+        zIndex: 1,
+      
+      });
     });
   }
 };
@@ -107,7 +108,6 @@ function handleAddTask(event) {
 // TODO: create a function to handle deleting a task
 function handleDeleteTask(event) {
   // get the task id from the button clicked
-
   // remove the task from the taskList, save and render
 }
 
@@ -115,8 +115,9 @@ function handleDeleteTask(event) {
 function handleDrop(event, ui) {
   // get the task id and new status from the event
 
-  // update the task status of the dragged card
 
+  // update the task status of the dragged card
+  
   // save and render
 }
 
@@ -133,7 +134,12 @@ $(document).ready(function () {
   // make lanes droppable
   $('.lane').droppable({
     drop: function (event, ui) {
+      let card = $(ui.draggable);
       $(this).addClass("ui-state-highlight");
+      accept = '.task-card';
+      tolerance = 'fit';
+      
+    
     }
   });
 
