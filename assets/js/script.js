@@ -25,18 +25,11 @@ function createTaskCard(task) {
   const cardEl= $('<div>');
   const pastDueCardEl = $('<div>');
   const nearDueCardEl = $('<div>');
-  const titleEl = $('<h3>').text('#task-title');
-  const dueDateEl = $('<div>').text('#task-due-date');
-  const descriptionEl = $('<p>').text('#task-description');
+  const titleEl = $('<h3>').text(task.title);
+  const dueDateEl = $('<div>').text(task.dueDate);
+  const descriptionEl = $('<p>').text(task.description);
 
   // I want the cardHeader to be the taskTitle, the dueDate to be in the cardBody and the description to be in the <p>
-
-  cardHeader.addClass('header h4');
-  cardBody.addClass('body');
-  cardText.addClass('text');
-
-
-
 
   // set card background color based on due date
   let today = dayjs().format('MM/DD/YYYY');
@@ -75,7 +68,7 @@ function renderTaskList() {
 
   // loop through tasks and create task cards for each status
   for (let task of taskList) {
-    if (newTask.status === 'todo') {
+    if (task.status === 'todo') {
       createTaskCard(task);
     }
 
