@@ -22,14 +22,13 @@ function generateTaskId() {
 // TODO: create a function to create a task card
 function createTaskCard(task) {
   // create card elements
-  const cardEl= $('<div>');
+  const cardEl= $('<div class="task card mb-4 p-3">');
   const pastDueCardEl = $('<div>');
   const nearDueCardEl = $('<div>');
   const titleEl = $('<h3>').text(task.title);
-  const dueDateEl = $('<div>').text(task.dueDate);
-  const descriptionEl = $('<p>').text(task.description);
+  const dueDateEl = $('<footer>').text(task.dueDate);
+  const descriptionEl = $('<div>').text(task.description);
 
-  // I want the cardHeader to be the taskTitle, the dueDate to be in the cardBody and the description to be in the <p>
 
   // set card background color based on due date
   let today = dayjs().format('MM/DD/YYYY');
@@ -47,7 +46,7 @@ function createTaskCard(task) {
   const todoEl = $('#todo-cards')
 
   todoEl.append(cardEl);
-  todoEl.append(titleEl, dueDateEl, descriptionEl);
+  cardEl.append(titleEl, dueDateEl, descriptionEl);
 }
 
 // TODO: create a function to render the task list and make cards draggable
