@@ -23,21 +23,19 @@ function generateTaskId() {
 function createTaskCard(task) {
   // create card elements
   const cardEl= $('<div class="task card mb-4 p-3">');
-  const pastDueCardEl = $('<div>');
-  const nearDueCardEl = $('<div>');
   const titleEl = $('<h3>').text(task.title);
   const dueDateEl = $('<footer>').text(task.dueDate);
   const descriptionEl = $('<div>').text(task.description);
 
 
   // set card background color based on due date
-  let today = dayjs().format('MM/DD/YYYY');
-  const taskDate = dayjs(task.dueDate, 'MM/DD/YYYY');
+  let today = dayjs(dayjs().format('MM/DD/YYYY'),'MM/DD/YYYY');
+  const taskDate = dayjs(dueDateEl, 'MM/DD/YYYY');
   
-  if (today > taskDate) {
-    pastDueCardEl.css('background-color', 'red');
-  } else if (today < taskDate) {
-    nearDueCardEl.css('background-color', 'yellow');
+  if (today.isAfter(taskDate)) {
+    cardEl.addClass('bs-danger');
+  } else if (today.isBefore(taskDate)) {
+    cardEl.addClass('bs-warning');
   };
 
 
