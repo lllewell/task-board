@@ -23,6 +23,7 @@ function generateTaskId() {
 function createTaskCard(task) {
   // create card elements
   const cardEl= $('<div class="task-card mb-4 p-3 border">');
+  const deleteButton = $('<button class="delete-button mb-1 p-3 border">').text('Delete');
   const titleEl = $('<h3>').text(task.title);
   const dueDateEl = $('<div>').text(task.dueDate);
   const descriptionEl = $('<div>').text(task.description);
@@ -45,6 +46,7 @@ function createTaskCard(task) {
 
   todoEl.append(cardEl);
   cardEl.append(titleEl, dueDateEl, descriptionEl);
+  cardEl.append(deleteButton);
 }
 
 // TODO: create a function to render the task list and make cards draggable
@@ -106,10 +108,20 @@ function handleAddTask(event) {
 }
 
 // TODO: create a function to handle deleting a task
+// Trying to get delete button to work, unsuccessful
 function handleDeleteTask(event) {
   // get the task id from the button clicked
+  let deleteButton = $('.delete-button');
+ 
+
+  deleteButton.on('click', '.RemoveSection', function(event) {
+    $('.card-body').remove;
+    });
   // remove the task from the taskList, save and render
-}
+  
+};
+
+
 
 // TODO: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
@@ -151,5 +163,6 @@ $(document).ready(function () {
     });
   });
 });
+
 
 

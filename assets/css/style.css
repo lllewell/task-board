@@ -14,3 +14,8 @@ body {
 .task-card:hover {
   cursor: grab;
 }
+
+.delete-button {
+  background-color: blue;
+  color: white;
+}
