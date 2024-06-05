@@ -111,16 +111,19 @@ function handleAddTask(event) {
 // Trying to get delete button to work, unsuccessful
 function handleDeleteTask(event) {
   // get the task id from the button clicked
-  let deleteButton = $('.delete-button');
+  // let deleteButton = $('.delete-button');
  
 
-  deleteButton.on('click', '.RemoveSection', function(event) {
-    $('.card-body').remove;
-    });
-  // remove the task from the taskList, save and render
+  // deleteButton.on('click', '.RemoveSection', function(event) {
+  //   $('.task-card').remove();
+  //   });
   
 };
+  // remove the task from the taskList, save and render
 
+$(document).on('click', '.task-card', function(event) {
+  $(this).remove();
+});
 
 
 // TODO: create a function to handle dropping a task into a new status lane
