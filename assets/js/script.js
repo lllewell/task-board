@@ -111,18 +111,16 @@ function handleAddTask(event) {
 // Trying to get delete button to work, unsuccessful
 function handleDeleteTask(event) {
   // get the task id from the button clicked
-  // let deleteButton = $('.delete-button');
- 
-
-  // deleteButton.on('click', '.RemoveSection', function(event) {
-  //   $('.task-card').remove();
-  //   });
   
 };
   // remove the task from the taskList, save and render
 
 $(document).on('click', '.task-card', function(event) {
+  event.stopPropagation();
+  event.preventDefault();
+  
   $(this).remove();
+  localStorage.removeItem('tasks');
 });
 
 
