@@ -118,11 +118,11 @@ function handleDeleteTask(event) {
 $(document).on('click', '.task-card', function(event) {
   event.stopPropagation();
   event.preventDefault();
-  
+
   $(this).remove();
   localStorage.removeItem('tasks');
-});
 
+});
 
 // TODO: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
